@@ -1,5 +1,6 @@
 # Jobs_Scraper
 Job Boards Scraping Agent
+
 A no-code job aggregator automation in n8n that scrapes job data from multiple job boards via Apify actors, consolidates and cleans the data, and stores it in Airtable for structured job insights and tracking.
 
 # n8n Workflows
