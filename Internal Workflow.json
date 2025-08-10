@@ -1,0 +1,285 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        16,
+        80
+      ],
+      "id": "2488c7fa-b39d-435d-b416-b85668bc77c7",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "actorId": {
+          "__rl": true,
+          "value": "m7tdxsBaMKJhIu4fM",
+          "mode": "list",
+          "cachedResultName": "Seek Job Scraper (websift/seek-job-scraper)",
+          "cachedResultUrl": "https://console.apify.com/actors/m7tdxsBaMKJhIu4fM/input"
+        },
+        "timeout": {},
+        "authentication": "apifyOAuth2Api"
+      },
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        240,
+        -112
+      ],
+      "id": "07ff3a8f-56dc-43a9-812e-85155e1032db",
+      "name": "Seek Jobs",
+      "credentials": {
+        "apifyOAuth2Api": {
+          "id": "B9ATt4z7qet5aYcz",
+          "name": "Apify account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "actorId": {
+          "__rl": true,
+          "value": "hMvNSpz3JnHgl5jkh",
+          "mode": "list",
+          "cachedResultName": "Indeed Scraper (misceres/indeed-scraper)",
+          "cachedResultUrl": "https://console.apify.com/actors/hMvNSpz3JnHgl5jkh/input"
+        },
+        "timeout": {},
+        "authentication": "apifyOAuth2Api"
+      },
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        240,
+        272
+      ],
+      "id": "38a09724-731b-4daa-9cf3-dea7dd25e74c",
+      "name": "Indeed Jobs",
+      "credentials": {
+        "apifyOAuth2Api": {
+          "id": "B9ATt4z7qet5aYcz",
+          "name": "Apify account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "actorId": {
+          "__rl": true,
+          "value": "hKByXkMQaC5Qt9UMN",
+          "mode": "list",
+          "cachedResultName": "Linkedin Jobs Scraper - PPR (curious_coder/linkedin-jobs-scraper)",
+          "cachedResultUrl": "https://console.apify.com/actors/hKByXkMQaC5Qt9UMN/input"
+        },
+        "timeout": {},
+        "authentication": "apifyOAuth2Api"
+      },
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        240,
+        80
+      ],
+      "id": "39de95fc-0872-4fb5-a92d-cbd1918606c1",
+      "name": "Linkedin Jobs",
+      "credentials": {
+        "apifyOAuth2Api": {
+          "id": "B9ATt4z7qet5aYcz",
+          "name": "Apify account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Datasets",
+        "datasetId": "={{ $json.defaultDatasetId }}",
+        "offset": {},
+        "limit": 20,
+        "authentication": "apifyOAuth2Api"
+      },
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        464,
+        -112
+      ],
+      "id": "1fd0df90-f9d6-426e-9660-519019b2a638",
+      "name": "Seek Jobs dataset items",
+      "credentials": {
+        "apifyOAuth2Api": {
+          "id": "B9ATt4z7qet5aYcz",
+          "name": "Apify account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Datasets",
+        "datasetId": "={{ $json.defaultDatasetId }}",
+        "offset": {},
+        "limit": 20,
+        "authentication": "apifyOAuth2Api"
+      },
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        464,
+        80
+      ],
+      "id": "e57479d1-6e23-48e5-b38b-08bb6bdbb11b",
+      "name": "Linkedin Jobs dataset items",
+      "credentials": {
+        "apifyOAuth2Api": {
+          "id": "B9ATt4z7qet5aYcz",
+          "name": "Apify account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Datasets",
+        "datasetId": "={{ $json.defaultDatasetId }}",
+        "offset": {},
+        "limit": 20,
+        "authentication": "apifyOAuth2Api"
+      },
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        464,
+        272
+      ],
+      "id": "cf80ae74-293a-4552-97ec-54fd2496407d",
+      "name": "Indeed Jobs dataset items",
+      "credentials": {
+        "apifyOAuth2Api": {
+          "id": "B9ATt4z7qet5aYcz",
+          "name": "Apify account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        688,
+        64
+      ],
+      "id": "ebc4c198-03d5-4e3c-a393-59d1e938fe9f",
+      "name": "Merge Dataset Items"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Seek Jobs",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Indeed Jobs",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Linkedin Jobs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Indeed Jobs": {
+      "main": [
+        [
+          {
+            "node": "Indeed Jobs dataset items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Seek Jobs": {
+      "main": [
+        [
+          {
+            "node": "Seek Jobs dataset items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Linkedin Jobs": {
+      "main": [
+        [
+          {
+            "node": "Linkedin Jobs dataset items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Seek Jobs dataset items": {
+      "main": [
+        [
+          {
+            "node": "Merge Dataset Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Linkedin Jobs dataset items": {
+      "main": [
+        [
+          {
+            "node": "Merge Dataset Items",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Indeed Jobs dataset items": {
+      "main": [
+        [
+          {
+            "node": "Merge Dataset Items",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Merge Dataset Items": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "52735047-6df1-4e9e-b446-9bfd2e39bdaf",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "1017c1be61f05c6dc1fb5830ad9730106c3f2b4d8ad1ea80f4658e23b764f05a"
+  },
+  "id": "ZrKYQ6ZhLBpkqF2m",
+  "tags": []
+}
